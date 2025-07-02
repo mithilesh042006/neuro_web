@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import { FaPhone, FaEnvelope } from 'react-icons/fa';
+import frame5 from "../Assets/frame5.png"
 
 function Contact() {
   const [formData, setFormData] = useState({
@@ -26,7 +28,7 @@ function Contact() {
   return (
     <div className="contact-page">
       {/* Contact Hero Section */}
-      <section className="contact-hero">
+      <section style={{backgroundImage: `url(${frame5})`}} className="contact-hero">
         <div className="hero-overlay"></div>
         <div className="container">
           <motion.div
@@ -35,7 +37,7 @@ function Contact() {
             transition={{ duration: 0.8 }}
             className="contact-hero-content"
           >
-            <h1>Get in Touch</h1>
+            <h1 style={{color: '#FF6B00',}}>Get in Touch</h1>
             <p>Let's discuss how we can help advance your neurotechnology goals</p>
           </motion.div>
         </div>
@@ -56,7 +58,7 @@ function Contact() {
               <p className="contact-subtitle">Reach out to us directly or fill out the form and we'll get back to you promptly.</p>
               
               <div className="info-items">
-                <div className="info-item">
+                {/* <div className="info-item">
                   <div className="info-icon-wrapper">
                     <i className="info-icon icon-location"></i>
                   </div>
@@ -64,11 +66,11 @@ function Contact() {
                     <h3>Location</h3>
                     <p>123 Innovation Drive<br />Silicon Valley, CA 94025</p>
                   </div>
-                </div>
+                </div> */}
                 
                 <div className="info-item">
                   <div className="info-icon-wrapper">
-                    <i className="info-icon icon-phone"></i>
+                    <FaPhone className="info-icon" />
                   </div>
                   <div className="info-content">
                     <h3>Call Us</h3>
@@ -78,11 +80,11 @@ function Contact() {
                 
                 <div className="info-item">
                   <div className="info-icon-wrapper">
-                    <i className="info-icon icon-email"></i>
+                    <FaEnvelope className="info-icon" />
                   </div>
                   <div className="info-content">
                     <h3>Email Us</h3>
-                    <p className="email-link">business@neurostack.in</p>
+                    <p style={{marginBottom: '225px'}} className="email-link">business@neurostack.in</p>
                   </div>
                 </div>
               </div>
