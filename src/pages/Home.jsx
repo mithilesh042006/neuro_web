@@ -1,22 +1,93 @@
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import frame1 from "../Assets/frame4.png"
 import frame2 from "../Assets/frame2.png"
 import { FaArrowRight } from 'react-icons/fa';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import home1 from "../Assets/home1.jpeg"
 import home2 from "../Assets/home2.jpeg"
 import home3 from "../Assets/home3.jpeg"
 import home4 from "../Assets/home4.jpeg"
 import home5 from "../Assets/home5.jpeg"
+import book from "../Assets/Frame3.png"
 
 const Home = () => {
-  
+  const { scrollYProgress } = useScroll();
+  const heroRef = useRef(null);
+  const servicesRef = useRef(null);
+  const testimonialsRef = useRef(null);
+  const achievementsRef = useRef(null);
 
-  const fadeIn = {
-    initial: { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6 }
+  // Enhanced animation variants
+  const fadeInUp = {
+    initial: {
+      opacity: 0,
+      y: 60,
+      scale: 0.95
+    },
+    animate: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.8,
+        ease: [0.25, 0.46, 0.45, 0.94]
+      }
+    }
+  };
+
+  const staggerContainer = {
+    animate: {
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.3
+      }
+    }
+  };
+
+  const slideInLeft = {
+    initial: {
+      opacity: 0,
+      x: -100,
+      rotateY: -15
+    },
+    animate: {
+      opacity: 1,
+      x: 0,
+      rotateY: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.25, 0.46, 0.45, 0.94]
+      }
+    }
+  };
+
+  const scaleIn = {
+    initial: {
+      opacity: 0,
+      scale: 0.8,
+      rotateX: 15
+    },
+    animate: {
+      opacity: 1,
+      scale: 1,
+      rotateX: 0,
+      transition: {
+        duration: 0.6,
+        ease: [0.25, 0.46, 0.45, 0.94]
+      }
+    }
+  };
+
+  const floatingAnimation = {
+    animate: {
+      y: [-10, 10, -10],
+      transition: {
+        duration: 4,
+        repeat: Infinity,
+        ease: "easeInOut"
+      }
+    }
   };
 
 
@@ -95,165 +166,506 @@ const Home = () => {
     <div className="home-page">
       {/* Hero Section */}
       <motion.section
+        ref={heroRef}
         className="hero-section"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
+        initial={{ opacity: 0, scale: 1.1 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{
+          duration: 1.2,
+          ease: [0.25, 0.46, 0.45, 0.94]
+        }}
         style={{
           backgroundImage:`url(${frame1}) `,
           backgroundColor: '#0A2647',
           backgroundSize: 'cover',
         }}
       >
-        <motion.h1
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-          {...fadeIn}>Commoditizing AI</motion.h1>
-        <motion.p
-          className="hero-tagline"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
+        <motion.div
+          variants={staggerContainer}
+          initial="initial"
+          animate="animate"
         >
-          Making intelligent systems accessible, affordable, and actionable — for everyone.
-        </motion.p>
-        {/* services button */}
-        <button style={{
-          paddingLeft: '40px',
-          paddingRight: '40px',
-          paddingTop: '10px',
-          paddingBottom: '10px',
-          borderRadius: '40px',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          gap: '10px',
-          cursor: 'pointer'
-        }}>
-          <div style={{
-            textAlign: 'center',
-            color: 'black',
-            fontSize: '20px',
-            fontWeight: '500',
-            lineHeight: '30px'
-          }}><Link to="/services" className="explore-link">Our Services</Link></div>
-        </button>
+          <motion.h1
+            variants={fadeInUp}
+            whileHover={{
+              scale: 1.05,
+              transition: { duration: 0.3 }
+            }}
+          >
+            Commoditizing AI
+          </motion.h1>
+
+          <motion.p
+            className="hero-tagline"
+            variants={fadeInUp}
+          >
+            Making intelligent systems accessible, affordable, and actionable — for everyone.
+          </motion.p>
+
+          {/* Enhanced services button */}
+          <motion.button
+            variants={fadeInUp}
+            whileHover={{
+              scale: 1.05,
+              boxShadow: "0 10px 25px rgba(0,0,0,0.2)",
+              transition: { duration: 0.3 }
+            }}
+            whileTap={{ scale: 0.95 }}
+            style={{
+              paddingLeft: '40px',
+              paddingRight: '40px',
+              paddingTop: '10px',
+              borderRadius: '40px',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              gap: '10px',
+              cursor: 'pointer',
+              border: 'none',
+              background: 'linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%)',
+              boxShadow: '0 4px 15px rgba(0,0,0,0.1)'
+            }}
+          >
+            <motion.div
+              style={{
+                textAlign: 'center',
+                color: 'black',
+                fontSize: '20px',
+                fontWeight: '500',
+                lineHeight: '30px'
+              }}
+              onClick={() => window.location.href = './services'}
+              // whileHover={{ x: 5 }}
+            >
+              <p>Our Services</p>
+            </motion.div>
+          </motion.button>
+        </motion.div>
       </motion.section>
 
       {/* Welcome Section */}
       <motion.section
         className="welcome-section"
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.6, duration: 0.8 }}
-        // style={{background:'black'}}
+        initial={{ opacity: 0, y: 50, rotateX: 10 }}
+        whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{
+          duration: 1,
+          ease: [0.25, 0.46, 0.45, 0.94],
+          delay: 0.2
+        }}
         style={{ backgroundImage:`url(${frame2})`, backgroundSize: 'cover'}}
       >
-        <p style={{color:'white',fontSize:'30px'}}>Welcome to Neurostack</p>
-        <p style={{color:'white',fontSize:'20px'}}>We're not just building AI — <span style={{color:'#0A2647'}}>we're simplifying it, scaling it, and putting it to work for businesses like yours.</span> From custom-trained LLMs to powerful vision APIs and edge-ready agents, our solutions are built to plug into your world without the complexity.</p>
-        <p style={{color:'white',fontSize:'20px'}}>Whether you want to transform your existing workflow or launch an AI-native product, we help you move faster — with solutions that are smart, scalable, and production-ready.</p>
+        <motion.div
+          variants={staggerContainer}
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true }}
+        >
+          <motion.p
+            variants={slideInLeft}
+            style={{
+              color:'white',
+              fontSize:'30px',
+              marginBottom: '20px'
+            }}
+          >
+            Welcome to Neurostack
+          </motion.p>
+
+          <motion.p
+            variants={fadeInUp}
+            style={{color:'white',fontSize:'20px', marginBottom: '15px'}}
+          >
+            We're not just building AI — <motion.span
+              style={{color:'#0A2647'}}
+              whileHover={{
+                scale: 1.05,
+                textShadow: "0 0 8px rgba(10, 38, 71, 0.8)"
+              }}
+            >
+              we're simplifying it, scaling it, and putting it to work for businesses like yours.
+            </motion.span> From custom-trained LLMs to powerful vision APIs and edge-ready agents, our solutions are built to plug into your world without the complexity.
+          </motion.p>
+
+          <motion.p
+            variants={fadeInUp}
+            style={{color:'white',fontSize:'20px'}}
+          >
+            Whether you want to transform your existing workflow or launch an AI-native product, we help you move faster — with solutions that are smart, scalable, and production-ready.
+          </motion.p>
+        </motion.div>
       </motion.section>
 
       {/* Services Preview */}
-      <section className="services-preview">
-        <h2>What We Offer</h2>
-        <div className="services-grid">
+      <section className="services-preview" ref={servicesRef}>
+        <motion.h2
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+        >
+          What We Offer
+        </motion.h2>
+
+        <motion.div
+          className="services-grid"
+          variants={staggerContainer}
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true, amount: 0.2 }}
+        >
           {services.map((service, index) => (
             <motion.div
               key={index}
               className="service-card"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 * index, duration: 0.5 }}
-              style={{ background: '#FEFFF3', padding: '25px', borderRadius: '30px', height: '402px', width: '328px', flexDirection: 'column', gap: '20px', display: 'flex', justifyContent: "space-evenly" }}
+              variants={scaleIn}
+              whileHover={{
+                scale: 1.05,
+                rotateY: 5,
+                boxShadow: "0 20px 40px rgba(0,0,0,0.15)",
+                transition: { duration: 0.3 }
+              }}
+              whileTap={{ scale: 0.95 }}
+              style={{
+                background: '#FEFFF3',
+                padding: '25px',
+                borderRadius: '30px',
+                height: '402px',
+                maxWidth: '328px',
+                width: '100%',
+                flexDirection: 'column',
+                gap: '20px',
+                display: 'flex',
+                justifyContent: "space-evenly",
+                cursor: 'pointer',
+                boxShadow: '0 8px 25px rgba(0,0,0,0.1)'
+              }}
             >
-              <div style={{ height: "40px", width: "277px", background: '#FF9C55', borderRadius: '40px', display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <div style={{ height: '40px', width: '40px', borderRadius: '100%', background: '#FFCEAA', display: 'flex', justifyContent: 'center', alignItems: 'center',paddingTop:'10px' }}>
-                  <h3>{index + 1}</h3>
-                </div>
-
-                <h3 style={{paddingTop:'10px'}}>{service.title}</h3>
-
-
-              </div>
-              <div
-              style={{ width: '277px', height: '124px', borderRadius: "20px",backgroundImage:service.image,backgroundSize: 'cover', backgroundPosition: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+              <motion.div
+                style={{
+                  height: "40px",
+                  maxWidth: "277px",
+                  width: "100%",
+                  background: '#FF9C55',
+                  borderRadius: '40px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '10px'
+                }}
+                whileHover={{ scale: 1.02 }}
               >
-              </div>
+                <motion.div
+                  style={{
+                    height: '40px',
+                    width: '40px',
+                    borderRadius: '100%',
+                    background: '#FFCEAA',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    paddingTop:'10px'
+                  }}
+                  whileHover={{
+                    rotate: 360,
+                    transition: { duration: 0.6 }
+                  }}
+                >
+                  <h3>{index + 1}</h3>
+                </motion.div>
+                <h3 style={{paddingTop:'10px'}}>{service.title}</h3>
+              </motion.div>
 
-              <p>{service.description}</p>           
+              <motion.div
+                style={{
+                  maxWidth: '277px',
+                  width: '100%',
+                  height: '124px',
+                  borderRadius: "20px",
+                  backgroundImage: service.image,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center'
+                }}
+                whileHover={{
+                  scale: 1.05,
+                  transition: { duration: 0.3 }
+                }}
+              />
+
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.3 }}
+              >
+                {service.description}
+              </motion.p>
             </motion.div>
           ))}
+
           <motion.div
-          className="explore-all-services" 
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.8 }}
-          style={{ display: 'flex', justifyContent: 'center', alignItems: 'center',borderRadius:'40px',height:'50px',width:'277px',marginTop:'180px',marginLeft:'40px',cursor:'pointer' }}>
-          <Link to="/services" className="explore-link">
-          Explore All Services →
-        </Link>
+            className="explore-all-services"
+            variants={fadeInUp}
+            whileHover={{
+              scale: 1.05,
+              boxShadow: "0 10px 25px rgba(0,0,0,0.2)",
+              transition: { duration: 0.3 }
+            }}
+            whileTap={{ scale: 0.95 }}
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              borderRadius:'40px',
+              height:'50px',
+              maxWidth:'277px',
+              width: '100%',
+              marginTop:'180px',
+              marginLeft:'40px',
+              cursor:'pointer',
+              boxShadow: '0 4px 15px rgba(0,0,0,0.1)'
+            }}
+            onClick={() => window.location.href = './services'}
+          >
+            <motion.div whileHover={{ x: 5 }}>
+              <p style={{marginTop:'13px'}}>Explore All Services →</p>
+            </motion.div>
           </motion.div>
-           
-        </div>
-        
+        </motion.div>
       </section>
 
       {/* Testimonials */}
-      <section className="testimonials">
-        <h2>What Our Clients Say</h2>
-        <div className="testimonials-grid">
+      <section className="testimonials" ref={testimonialsRef}>
+        <motion.h2
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+        >
+          What Our Clients Say
+        </motion.h2>
+
+        <motion.div
+          className="testimonials-grid"
+          variants={staggerContainer}
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true, amount: 0.2 }}
+        >
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={index}
               className="testimonial-card"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.3 * index, duration: 0.5 }}
+              variants={scaleIn}
+              whileHover={{
+                scale: 1.03,
+                rotateY: 2,
+                boxShadow: "0 15px 35px rgba(0,0,0,0.15)",
+                transition: { duration: 0.3 }
+              }}
+              style={{
+                cursor: 'pointer'
+              }}
             >
-              <span className="stars">⭐️⭐️⭐️⭐️⭐️</span>
-              <p className="testimonial-text">{testimonial.text}</p>
-              <p className="testimonial-author">— {testimonial.author}</p>
-              <p className="testimonial-position">{testimonial.position}</p>
+              <motion.span
+                className="stars"
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{
+                  delay: 0.5 + index * 0.1,
+                  type: "spring",
+                  stiffness: 200
+                }}
+                whileHover={{
+                  scale: 1.2,
+                  rotate: 5
+                }}
+              >
+                ⭐️⭐️⭐️⭐️⭐️
+              </motion.span>
+
+              <motion.p
+                className="testimonial-text"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 + index * 0.1 }}
+              >
+                {testimonial.text}
+              </motion.p>
+
+              <motion.p
+                className="testimonial-author"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.4 + index * 0.1 }}
+              >
+                — {testimonial.author}
+              </motion.p>
+
+              <motion.p
+                className="testimonial-position"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.5 + index * 0.1 }}
+              >
+                {testimonial.position}
+              </motion.p>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </section>
 
-      {/* new achievement */}
-      <section className="achievements">
-      <h2>Our Achievements</h2>
-      
-      <div className="achievements-container">
-        {achievements.map((achievement, index) => (
-          <motion.div
-            key={index}
-            className="achievement-item"
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2 * index, duration: 0.5 }}
-          >
-            <div className="achievement-icon" />
-            <div 
-              className="achievement-text"
-              style={{ color: achievement.color }}
+      {/* Achievements */}
+      <section className="achievements" ref={achievementsRef}>
+        <motion.h2
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+        >
+          Our Achievements
+        </motion.h2>
+
+        <motion.div
+          className="achievements-container"
+          variants={staggerContainer}
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true, amount: 0.2 }}
+          style={{marginLeft:'80px'}}
+        >
+          {achievements.map((achievement, index) => (
+            <motion.div
+              key={index}
+              className="achievement-item"
+              variants={slideInLeft}
+              whileHover={{
+                scale: 1.02,
+                x: 10,
+                transition: { duration: 0.3 }
+              }}
+              style={{ cursor: 'pointer' }}
             >
-              {achievement.text}
-            </div>
-          </motion.div>
-        ))}
-      </div>
-    </section>
+              <motion.div
+                className="achievement-icon"
+                whileHover={{
+                  rotate: 180,
+                  scale: 1.2,
+                  transition: { duration: 0.5 }
+                }}
+              />
+              <motion.div
+                className="achievement-text"
+                style={{ color: achievement.color }}
+                whileHover={{
+                  x: 5,
+                  transition: { duration: 0.2 }
+                }}
+              >
+                {achievement.text}
+              </motion.div>
+            </motion.div>
+          ))}
+        </motion.div>
+      </section>
 
       {/* CTA Section */}
-      <section className="cta-section">
-        <h2>Ready to See What AI Can Do for You?</h2>
-        <p>Let's talk. Whether you're just exploring or ready to scale, we're here to build with you.</p>
-        <div className="cta-buttons">
-          <Link to="/contact" className="cta-button secondary">Talk to Our Team</Link>
+      {/* Call to Action Section */}
+      <motion.div
+        className="cta-section"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        style={{
+          width: '100%',
+          maxWidth: '1313px',
+          height: 'auto',
+          minHeight: '364px',
+          position: 'relative',
+          overflow: 'hidden',
+          borderRadius: '40px',
+          margin: '60px auto',
+          backgroundImage: `url(${book})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          padding: '40px 20px',
+        }}
+      >
+        <div style={{
+          width: '100%',
+          height: '100%',
+          position: 'absolute',
+          background: 'transparent',
+        }}></div>
+
+        <div style={{
+          position: 'relative',
+          textAlign: 'center',
+          color: 'black',
+          fontSize: '64px',
+          fontWeight: '700',
+          lineHeight: '72px',
+          margin: '0 0 20px',
+          padding: '0 10px',
+        }}>
+          Ready to see what AI can do for You?
         </div>
-      </section>
+
+        <div style={{
+          position: 'relative',
+          textAlign: 'center',
+          color: 'black',
+          fontSize: '20px',
+          fontWeight: '500',
+          lineHeight: '30px',
+          margin: '0 0 30px',
+          padding: '0 10px',
+          maxWidth: '100%',
+        }}>
+          Let's talk. Whether you're just exploring or ready to scale, we're here to build with you.
+        </div>
+
+        <div style={{
+          position: 'relative',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: '8px',
+          width: '100%',
+        }}>
+          <Link to="/contact" style={{ textDecoration: 'none' }}>
+            <button style={{
+              paddingLeft: '40px',
+              paddingRight: '40px',
+              paddingTop: '10px',
+              paddingBottom: '10px',
+              background: '#0A2647',
+              borderRadius: '40px',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              gap: '10px',
+              cursor: 'pointer',
+              border: 'none',
+            }}>
+              <div style={{
+                textAlign: 'center',
+                color: 'white',
+                fontSize: '20px',
+                fontWeight: '500',
+                lineHeight: '30px',
+              }}>Talk to Our Team</div>
+            </button>
+          </Link>
+        </div>
+      </motion.div>
     </div>
   );
 };

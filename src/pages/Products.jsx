@@ -2,6 +2,9 @@ import { motion } from 'framer-motion';
 import { useState, useRef, useEffect } from 'react';
 import { FaServer, FaBrain, FaRunning } from 'react-icons/fa';
 import book from "../Assets/Frame3.png";
+import product1 from "../Assets/products1.jpg";
+import product2 from "../Assets/products2.jpg";
+import product3 from "../Assets/products3.jpg";
 
 function Products() {
   const [snackbarVisible, setSnackbarVisible] = useState(false);
@@ -34,6 +37,9 @@ function Products() {
       description:
         'We provide high-speed AI inferencing APIs for vision, speech, and language tasks that you can plug into your existing platforms effortlessly. From object detection and image captioning to speech-to-text and summarization — our APIs are optimized for low latency and high accuracy. Built with autoscaling and pay-as-you-go pricing, you only pay for what you use — whether its 10 or 10,000 calls a day.',
       buttonText: 'Try it',
+      backgroundImage: `url(${product1})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
     },
     {
       id: 'llm-solutions',
@@ -42,6 +48,9 @@ function Products() {
       description:
         'Tailored Large Language Model (LLM) solutions fine-tuned for real business use cases. From contract analysis for the legal sector to medical summarization for healthcare, our solutions are secure, scalable, and on-brand.',
       buttonText: 'Try it',
+      backgroundImage: `url(${product1})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
     },
     {
       id: 'posture-tracking',
@@ -50,6 +59,8 @@ function Products() {
       description:
         'Real-time body movement tracking using cloud-based API inference or on-device edge deployment. Perfect for athlete motion tracking, workplace posture monitoring, and physiotherapy analytics.',
       buttonText: 'Try it',
+      backgroundImage: `url(${product1})`,
+      
     },
   ];
   
@@ -122,6 +133,8 @@ function Products() {
       overflow: 'hidden',
       borderRadius: isMobile ? '30px' : '50px',
       marginBottom: '40px',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
     },
     canvasStyle: {
       position: 'absolute',
@@ -209,6 +222,7 @@ function Products() {
       marginLeft: isMobile ? '0' : '60px',
       margin: isMobile ? '30px auto 20px' : '0',
       zIndex: 1,
+      
     },
     snackbar: {
       position: 'fixed',

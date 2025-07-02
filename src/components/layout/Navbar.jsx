@@ -42,7 +42,7 @@ function Navbar() {
       <nav
         style={{
           marginTop: isMobile ? '15px' : '25px',
-          marginLeft: isMobile ? '15px' : '35px',
+          marginLeft: isMobile ? '15px' : '45px',
           width: isMobile ? 'calc(100% - 30px)' : '95.2%',
           padding: isMobile ? '8px 15px' : '10px 28px',
           background: '#FEFFF3',
@@ -168,8 +168,8 @@ function Navbar() {
               cursor: 'pointer',
             }}
           >
-            <Link
-              to="/contact"
+            <div
+              onClick={() => window.location.href = './contact'}
               style={{
                 textAlign: 'center',
                 color: '#FEFFF3',
@@ -181,7 +181,7 @@ function Navbar() {
               }}
             >
               Contact
-            </Link>
+            </div>
           </div>
         )}
 

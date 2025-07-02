@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { FaRobot, FaDatabase, FaPaintBrush, FaEye, FaLanguage, FaFlask, FaLaptopCode, FaPalette, FaPencilAlt } from 'react-icons/fa';
+import book from "../Assets/Frame3.png";
 
 function Services() {
   const services = [
@@ -192,25 +193,100 @@ function Services() {
         ))}
       </motion.section>
 
-      {/* CTA Section */}
-      <motion.section 
-        className="services-cta"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
+      {/* Call to Action Section */}
+      <motion.div
+        className="cta-section"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
         viewport={{ once: true }}
+        style={{
+          width: '100%',
+          maxWidth: '1313px',
+          height: 'auto',
+          minHeight: '364px',
+          position: 'relative',
+          overflow: 'hidden',
+          borderRadius: '40px',
+          margin: '60px auto',
+          backgroundImage: `url(${book})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          padding: '40px 20px',
+        }}
       >
-        <h2>Ready to Transform Your Business with AI?</h2>
-        <p>
-          Let's discuss how our services can help you achieve your goals.
-          From concept to deployment, we're here to guide you through every step.
-        </p>
-        <div className="cta-buttons">
-          <Link to="/contact" className="cta-button primary">
-            Schedule a Consultation
-          </Link>
-          
+        <div style={{
+          width: '100%',
+          height: '100%',
+          position: 'absolute',
+          background: 'transparent',
+        }}></div>
+
+        <div style={{
+          position: 'relative',
+          textAlign: 'center',
+          color: 'black',
+          fontSize: '64px',
+          fontWeight: '700',
+          lineHeight: '72px',
+          margin: '0 0 20px',
+          padding: '0 10px',
+        }}>
+          Ready to see what AI can do for You?
         </div>
-      </motion.section>
+
+        <div style={{
+          position: 'relative',
+          textAlign: 'center',
+          color: 'black',
+          fontSize: '20px',
+          fontWeight: '500',
+          lineHeight: '30px',
+          margin: '0 0 30px',
+          padding: '0 10px',
+          maxWidth: '100%',
+        }}>
+          Let's talk. Whether you're just exploring or ready to scale, we're here to build with you.
+        </div>
+
+        <div style={{
+          position: 'relative',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: '8px',
+          width: '100%',
+        }}>
+          <Link to="/contact" style={{ textDecoration: 'none' }}>
+            <button style={{
+              paddingLeft: '40px',
+              paddingRight: '40px',
+              paddingTop: '10px',
+              paddingBottom: '10px',
+              background: '#0A2647',
+              borderRadius: '40px',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              gap: '10px',
+              cursor: 'pointer',
+              border: 'none',
+            }}>
+              <div style={{
+                textAlign: 'center',
+                color: 'white',
+                fontSize: '20px',
+                fontWeight: '500',
+                lineHeight: '30px',
+              }}>Schedule a Consultation</div>
+            </button>
+          </Link>
+        </div>
+      </motion.div>
     </div>
   );
 }
