@@ -38,8 +38,7 @@ function Products() {
         'We provide high-speed AI inferencing APIs for vision, speech, and language tasks that you can plug into your existing platforms effortlessly. From object detection and image captioning to speech-to-text and summarization — our APIs are optimized for low latency and high accuracy. Built with autoscaling and pay-as-you-go pricing, you only pay for what you use — whether its 10 or 10,000 calls a day.',
       buttonText: 'Try it',
       backgroundImage: `url(${product1})`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
+      
     },
     {
       id: 'llm-solutions',
@@ -48,9 +47,8 @@ function Products() {
       description:
         'Tailored Large Language Model (LLM) solutions fine-tuned for real business use cases. From contract analysis for the legal sector to medical summarization for healthcare, our solutions are secure, scalable, and on-brand.',
       buttonText: 'Try it',
-      backgroundImage: `url(${product1})`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
+      backgroundImage: `url(${product2})`,
+      
     },
     {
       id: 'posture-tracking',
@@ -59,7 +57,7 @@ function Products() {
       description:
         'Real-time body movement tracking using cloud-based API inference or on-device edge deployment. Perfect for athlete motion tracking, workplace posture monitoring, and physiotherapy analytics.',
       buttonText: 'Try it',
-      backgroundImage: `url(${product1})`,
+      backgroundImage: `url(${product3})`,
       
     },
   ];
@@ -133,8 +131,6 @@ function Products() {
       overflow: 'hidden',
       borderRadius: isMobile ? '30px' : '50px',
       marginBottom: '40px',
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
     },
     canvasStyle: {
       position: 'absolute',
@@ -222,6 +218,8 @@ function Products() {
       marginLeft: isMobile ? '0' : '60px',
       margin: isMobile ? '30px auto 20px' : '0',
       zIndex: 1,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
       
     },
     snackbar: {
@@ -334,19 +332,38 @@ function Products() {
         <motion.div
           key={product.id}
           ref={(el) => (containerRefs.current[index] = el)}
-          style={styles.productCard}
+          style={{
+            ...styles.productCard,
+            willChange: 'transform',
+            transform: 'translateZ(0)',
+            backfaceVisibility: 'hidden'
+          }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
           <canvas
             ref={(el) => (canvasRefs.current[index] = el)}
-            style={styles.canvasStyle}
+            style={{
+              ...styles.canvasStyle,
+              willChange: 'transform',
+              transform: 'translateZ(0)',
+              backfaceVisibility: 'hidden'
+            }}
           />
           <div style={styles.cardOverlay} />
           
           {isMobile && (
-            <div style={styles.productImage} />
+            <div style={{
+              ...styles.productImage,
+              backgroundImage: product.backgroundImage,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+              willChange: 'transform',
+              transform: 'translateZ(0)',
+              backfaceVisibility: 'hidden'
+            }}></div>
           )}
           
           <div style={styles.cardContent}>
@@ -369,7 +386,16 @@ function Products() {
           </div>
           
           {!isMobile && (
-            <div style={styles.productImage} />
+             <div style={{
+               ...styles.productImage,
+               backgroundImage: product.backgroundImage,
+               backgroundSize: 'cover',
+               backgroundPosition: 'center',
+               backgroundRepeat: 'no-repeat',
+               willChange: 'transform',
+               transform: 'translateZ(0)',
+               backfaceVisibility: 'hidden'
+             }}></div>
           )}
         </motion.div>
       ))}
