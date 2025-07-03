@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { FaServer, FaBrain, FaRunning } from 'react-icons/fa';
 import book from "../Assets/Frame3.png";
 import product1 from "../Assets/products1.jpg";
@@ -9,6 +9,8 @@ import product3 from "../Assets/products3.jpg";
 function Products() {
   const [snackbarVisible, setSnackbarVisible] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [loadedImages, setLoadedImages] = useState(new Set());
+  const [visibleImages, setVisibleImages] = useState(new Set());
   const isMobile = windowWidth <= 768;
 
   useEffect(() => {
@@ -37,8 +39,8 @@ function Products() {
       description:
         'We provide high-speed AI inferencing APIs for vision, speech, and language tasks that you can plug into your existing platforms effortlessly. From object detection and image captioning to speech-to-text and summarization — our APIs are optimized for low latency and high accuracy. Built with autoscaling and pay-as-you-go pricing, you only pay for what you use — whether its 10 or 10,000 calls a day.',
       buttonText: 'Try it',
-      backgroundImage: `url(${product1})`,
-      
+      image: product1,
+
     },
     {
       id: 'llm-solutions',
@@ -47,8 +49,8 @@ function Products() {
       description:
         'Tailored Large Language Model (LLM) solutions fine-tuned for real business use cases. From contract analysis for the legal sector to medical summarization for healthcare, our solutions are secure, scalable, and on-brand.',
       buttonText: 'Try it',
-      backgroundImage: `url(${product2})`,
-      
+      image: product2,
+
     },
     {
       id: 'posture-tracking',
@@ -57,8 +59,8 @@ function Products() {
       description:
         'Real-time body movement tracking using cloud-based API inference or on-device edge deployment. Perfect for athlete motion tracking, workplace posture monitoring, and physiotherapy analytics.',
       buttonText: 'Try it',
-      backgroundImage: `url(${product3})`,
-      
+      image: product3,
+
     },
   ];
   
@@ -356,14 +358,31 @@ function Products() {
           {isMobile && (
             <div style={{
               ...styles.productImage,
-              backgroundImage: product.backgroundImage,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat',
+              overflow: 'hidden',
               willChange: 'transform',
               transform: 'translateZ(0)',
               backfaceVisibility: 'hidden'
-            }}></div>
+            }}>
+              <img
+                src={product.image}
+                alt={product.title}
+                loading="lazy"
+                decoding="async"
+                onLoad={() => handleImageLoad(index)}
+                onError={() => handleImageError(index)}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  objectPosition: 'center',
+                  willChange: 'transform',
+                  transform: 'translateZ(0)',
+                  backfaceVisibility: 'hidden',
+                  transition: 'opacity 0.3s ease-in-out',
+                  opacity: loadedImages.has(index) ? 1 : 0.7
+                }}
+              />
+            </div>
           )}
           
           <div style={styles.cardContent}>
@@ -388,14 +407,31 @@ function Products() {
           {!isMobile && (
              <div style={{
                ...styles.productImage,
-               backgroundImage: product.backgroundImage,
-               backgroundSize: 'cover',
-               backgroundPosition: 'center',
-               backgroundRepeat: 'no-repeat',
+               overflow: 'hidden',
                willChange: 'transform',
                transform: 'translateZ(0)',
                backfaceVisibility: 'hidden'
-             }}></div>
+             }}>
+               <img
+                 src={product.image}
+                 alt={product.title}
+                 loading="lazy"
+                 decoding="async"
+                 onLoad={() => handleImageLoad(index)}
+                 onError={() => handleImageError(index)}
+                 style={{
+                   width: '100%',
+                   height: '100%',
+                   objectFit: 'cover',
+                   objectPosition: 'center',
+                   willChange: 'transform',
+                   transform: 'translateZ(0)',
+                   backfaceVisibility: 'hidden',
+                   transition: 'opacity 0.3s ease-in-out',
+                   opacity: loadedImages.has(index) ? 1 : 0.7
+                 }}
+               />
+             </div>
           )}
         </motion.div>
       ))}

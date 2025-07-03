@@ -37,7 +37,7 @@ function Footer() {
               Advancing the future of neurotechnology with innovative solutions and cutting-edge research.
             </p>
             <div className="social-links">
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.linkedin.com/company/neurostack-org/" target="_blank" rel="noopener noreferrer">
                 <FaLinkedin size={24} />
               </a>
               <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
