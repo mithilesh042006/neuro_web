@@ -201,6 +201,7 @@ const Home = () => {
               scale: 1.05,
               transition: { duration: 0.3 }
             }}
+            style={{ marginTop: isMobile ? '25px': '0px' }}
           >
             Commoditizing AI
           </motion.h1>
@@ -630,7 +631,7 @@ const Home = () => {
           position: 'relative',
           textAlign: 'center',
           color: 'black',
-          fontSize: '64px',
+          fontSize: isMobile ? '40px' : '64px',
           fontWeight: '700',
           lineHeight: '72px',
           margin: '0 0 20px',

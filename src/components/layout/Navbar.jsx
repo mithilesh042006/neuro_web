@@ -41,7 +41,7 @@ function Navbar() {
     }}>
       <nav
         style={{
-          marginTop: isMobile ? '15px' : '25px',
+          marginTop: isMobile ? '20px' : '25px',
           marginLeft: isMobile ? '15px' : '45px',
           width: isMobile ? 'calc(100% - 30px)' : '95.2%',
           padding: isMobile ? '8px 15px' : '10px 28px',
