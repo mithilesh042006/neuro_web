@@ -272,7 +272,7 @@ function Products() {
       top: isMobile ? 'auto' : '66px',
       textAlign: 'center',
       color: 'black',
-      fontSize: isMobile ? '28px' : '48px',
+      fontSize: isMobile ? '30px' : '48px',
       fontWeight: '700',
       lineHeight: isMobile ? '40px' : '72px',
       margin: isMobile ? '0 0 20px' : '0',

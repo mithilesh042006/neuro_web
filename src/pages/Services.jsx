@@ -1,9 +1,20 @@
 import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FaRobot, FaDatabase, FaPaintBrush, FaEye, FaLanguage, FaFlask, FaLaptopCode, FaPalette, FaPencilAlt } from 'react-icons/fa';
 import book from "../Assets/Frame3.png";
 
 function Services() {
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
   const services = [
     {
       id: 'agentic-ai',
@@ -230,9 +241,9 @@ function Services() {
           position: 'relative',
           textAlign: 'center',
           color: 'black',
-          fontSize: '64px',
+          fontSize: isMobile ? '35px' : '64px',
           fontWeight: '700',
-          lineHeight: '72px',
+          lineHeight: isMobile ? '42px' : '72px',
           margin: '0 0 20px',
           padding: '0 10px',
         }}>

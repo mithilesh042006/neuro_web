@@ -631,7 +631,7 @@ const Home = () => {
           position: 'relative',
           textAlign: 'center',
           color: 'black',
-          fontSize: isMobile ? '40px' : '64px',
+          fontSize: isMobile ? '35px' : '64px',
           fontWeight: '700',
           lineHeight: '72px',
           margin: '0 0 20px',
