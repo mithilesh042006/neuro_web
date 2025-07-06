@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import frame1 from "../Assets/frame4.png"
 import frame2 from "../Assets/frame2.png"
 import { FaArrowRight } from 'react-icons/fa';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import home1 from "../Assets/home1.jpeg"
 import home2 from "../Assets/home2.jpeg"
 import home3 from "../Assets/home3.jpeg"
@@ -16,6 +16,16 @@ const Home = () => {
   const heroRef = useRef(null);
   const servicesRef = useRef(null);
   const testimonialsRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
   const achievementsRef = useRef(null);
 
   // Enhanced animation variants
@@ -329,29 +339,32 @@ const Home = () => {
               whileTap={{ scale: 0.95 }}
               style={{
                 background: '#FEFFF3',
-                padding: '25px',
-                borderRadius: '30px',
-                height: '402px',
-                maxWidth: '328px',
+                padding: isMobile ? '20px' : '25px',
+                borderRadius: isMobile ? '20px' : '30px',
+                height: isMobile ? 'auto' : '402px',
+                minHeight: isMobile ? '350px' : '402px',
+                maxWidth: isMobile ? '100%' : '328px',
                 width: '100%',
                 flexDirection: 'column',
-                gap: '20px',
+                gap: isMobile ? '15px' : '20px',
                 display: 'flex',
                 justifyContent: "space-evenly",
                 cursor: 'pointer',
-                boxShadow: '0 8px 25px rgba(0,0,0,0.1)'
+                boxShadow: '0 8px 25px rgba(0,0,0,0.1)',
+                margin: isMobile ? '0 auto 20px' : '0'
               }}
             >
               <motion.div
                 style={{
                   height: "40px",
-                  maxWidth: "277px",
+                  maxWidth: isMobile ? "100%" : "277px",
                   width: "100%",
                   background: '#FF9C55',
-                  borderRadius: '40px',
+                  borderRadius: isMobile ? '30px' : '40px',
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '10px'
+                  gap: isMobile ? '8px' : '10px',
+                  padding: isMobile ? '0 10px' : '0'
                 }}
                 whileHover={{ scale: 1.02 }}
               >
@@ -378,10 +391,10 @@ const Home = () => {
 
               <motion.div
                 style={{
-                  maxWidth: '277px',
+                  maxWidth: isMobile ? '100%' : '277px',
                   width: '100%',
-                  height: '124px',
-                  borderRadius: "20px",
+                  height: isMobile ? '100px' : '124px',
+                  borderRadius: isMobile ? "15px" : "20px",
                   backgroundImage: service.image,
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
@@ -390,7 +403,7 @@ const Home = () => {
                   alignItems: 'center'
                 }}
                 whileHover={{
-                  scale: 1.05,
+                  scale: isMobile ? 1.02 : 1.05,
                   transition: { duration: 0.3 }
                 }}
               />
@@ -399,6 +412,14 @@ const Home = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3 }}
+                style={{
+                  fontSize: isMobile ? '13px' : '14px',
+                  lineHeight: '1.5',
+                  textAlign: 'center',
+                  color: '#666',
+                  padding: isMobile ? '0 5px' : '0',
+                  margin: isMobile ? '10px 0' : '15px 0'
+                }}
               >
                 {service.description}
               </motion.p>

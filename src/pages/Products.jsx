@@ -127,12 +127,14 @@ function Products() {
     productCard: {
       width: '100%',
       height: isMobile ? 'auto' : '360px',
-      minHeight: isMobile ? '460px' : '360px',
+      minHeight: isMobile ? '420px' : '360px',
       position: 'relative',
       background: '#0A2647',
       overflow: 'hidden',
-      borderRadius: isMobile ? '30px' : '50px',
-      marginBottom: '40px',
+      borderRadius: isMobile ? '20px' : '50px',
+      marginBottom: isMobile ? '20px' : '40px',
+      touchAction: 'manipulation', // Prevents zoom on double-tap
+      WebkitTapHighlightColor: 'transparent', // Removes tap highlight on mobile
     },
     canvasStyle: {
       position: 'absolute',
@@ -187,18 +189,22 @@ function Products() {
     },
     button: {
       height: 'auto',
-      paddingLeft: '30px',
-      paddingRight: '30px',
-      paddingTop: '10px',
-      paddingBottom: '10px',
+      minHeight: isMobile ? '44px' : 'auto', // Touch-friendly height
+      paddingLeft: isMobile ? '20px' : '30px',
+      paddingRight: isMobile ? '20px' : '30px',
+      paddingTop: isMobile ? '12px' : '10px',
+      paddingBottom: isMobile ? '12px' : '10px',
       background: '#FFCEAA',
-      borderRadius: '40px',
+      borderRadius: isMobile ? '25px' : '40px',
       justifyContent: 'center',
       alignItems: 'center',
       gap: '10px',
       display: 'inline-flex',
       border: 'none',
       cursor: 'pointer',
+      touchAction: 'manipulation',
+      WebkitTapHighlightColor: 'transparent',
+      transition: 'all 0.2s ease',
     },
     buttonText: {
       textAlign: 'center',

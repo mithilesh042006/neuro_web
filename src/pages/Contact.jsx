@@ -1,9 +1,10 @@
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FaPhone, FaEnvelope } from 'react-icons/fa';
 import frame5 from "../Assets/frame5.png"
 
 function Contact() {
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -11,6 +12,15 @@ function Contact() {
     subject: '',
     message: ''
   });
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const handleChange = (e) => {
     setFormData({

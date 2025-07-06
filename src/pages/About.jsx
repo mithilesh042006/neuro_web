@@ -1,12 +1,24 @@
 import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
 import bgimg2 from "../Assets/background1.jpg"
 import bgimg3 from "../Assets/background2.jpg"
-import profileImg1 from "../Assets/bg2.jpg" 
+import profileImg1 from "../Assets/bg2.jpg"
 import profileImg2 from "../Assets/bg2.jpg"
 import book from "../Assets/Frame3.png"
 
 
 const About = () => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const fadeIn = {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },
@@ -275,13 +287,13 @@ const About = () => {
           >
             {/* Left side - Round image */}
             <div style={{
-              width: '280px',
-              height: '280px',
+              width: isMobile ? '200px' : '280px',
+              height: isMobile ? '200px' : '280px',
               borderRadius: '50%',
               overflow: 'hidden',
               flexShrink: 0,
               boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.5)',
-              border: '4px solid #0A2647',
+              border: isMobile ? '3px solid #0A2647' : '4px solid #0A2647',
             }}>
               <img 
                 src={profileImg1} 
@@ -298,10 +310,11 @@ const About = () => {
             <div style={{
               flex: '1 1 300px',
               maxWidth: '100%',
+              textAlign: isMobile ? 'center' : 'left',
             }}>
               <h3 style={{
                 color: '#0A2647',
-                fontSize: '28px',
+                fontSize: isMobile ? '24px' : '28px',
                 fontWeight: '700',
                 marginBottom: '10px'
               }}>Andy Jassy</h3>
