@@ -309,7 +309,7 @@ const Home = () => {
       </motion.section>
 
       {/* Services Preview */}
-      <section className="services-preview" ref={servicesRef}>
+      <section className="services-preview" ref={servicesRef} style={{paddingBottom: isMobile? '0px':'60px'}}>
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -325,6 +325,7 @@ const Home = () => {
           initial="initial"
           whileInView="animate"
           viewport={{ once: true, amount: 0.2 }}
+          
         >
           {services.map((service, index) => (
             <motion.div
@@ -444,8 +445,8 @@ const Home = () => {
               height:'50px',
               maxWidth:'277px',
               width: '100%',
-              marginTop:'180px',
-              marginLeft:'40px',
+              marginTop: isMobile ? '20px' : '180px',
+              marginLeft: isMobile?'10px' :'40px',
               cursor:'pointer',
               boxShadow: '0 4px 15px rgba(0,0,0,0.1)'
             }}
