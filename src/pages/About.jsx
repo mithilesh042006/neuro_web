@@ -2,8 +2,8 @@ import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import bgimg2 from "../Assets/background1.jpg"
 import bgimg3 from "../Assets/background2.jpg"
-import profileImg1 from "../Assets/bg2.jpg"
-import profileImg2 from "../Assets/bg2.jpg"
+import profileImg1 from "../Assets/about1.jpg"
+import profileImg2 from "../Assets/about2.jpg"
 import book from "../Assets/Frame3.png"
 
 
@@ -317,7 +317,7 @@ const About = () => {
                 fontSize: isMobile ? '24px' : '28px',
                 fontWeight: '700',
                 marginBottom: '10px'
-              }}>Andy Jassy</h3>
+              }}>Sakthi Mahendran</h3>
               
               <p style={{
                 color: '#FF6B00',
@@ -333,7 +333,7 @@ const About = () => {
                 lineHeight: '28px',
                 marginBottom: '15px'
               }}>
-                With over 15 years of experience in AI and machine learning, Alexandra has led innovation teams at Google and Microsoft before founding our company. Her research in natural language processing has been published in top journals and implemented in products used by millions.
+                Sakthi leads the vision and direction of our company, driving innovation across AI-powered solutions. With a deep passion for technology and problem-solving, he has been instrumental in turning ideas into impactful products. His focus remains on building scalable systems that are accessible, intelligent, and built for real-world use.
               </p>
               
               <div style={{
@@ -350,10 +350,10 @@ const About = () => {
                   alignItems: 'center',
                   color: 'white',
                   cursor: 'pointer'
-                }}>
+                }} onClick={() => window.open('https://www.linkedin.com/in/sakthimahendrank/', '_blank')}>
                   <span>in</span>
                 </button>
-                <button style={{
+                {/* <button style={{
                   width: '36px',
                   height: '36px',
                   borderRadius: '50%',
@@ -365,7 +365,7 @@ const About = () => {
                   cursor: 'pointer'
                 }}>
                   <span>𝕏</span>
-                </button>
+                </button> */}
               </div>
             </div>
           </motion.div>
@@ -417,14 +417,14 @@ const About = () => {
                 fontSize: '28px',
                 fontWeight: '700',
                 marginBottom: '10px'
-              }}>Marcus Johnson</h3>
+              }}>Kiran Parthiban</h3>
               
               <p style={{
                 color: '#FF6B00',
                 fontSize: '18px',
                 fontWeight: '600',
                 marginBottom: '20px'
-              }}>CTO & Co-Founder</p>
+              }}>Managing Director & Co-Founder</p>
               
               <p style={{
                 color: '#212121',
@@ -433,7 +433,7 @@ const About = () => {
                 lineHeight: '28px',
                 marginBottom: '15px'
               }}>
-                Marcus brings a decade of engineering leadership from Amazon Web Services and several successful startups. He specializes in scalable AI systems architecture and has been instrumental in developing our core technology platform, focusing on making complex systems easily accessible.
+                Kiran oversees operations, strategy, and client delivery. With a strong foundation in engineering and leadership, he ensures our solutions meet the highest standards of performance and usability. His commitment to building meaningful AI applications keeps the company aligned with its mission of making technology human-centric.
               </p>
               
               <div style={{
@@ -450,10 +450,10 @@ const About = () => {
                   alignItems: 'center',
                   color: 'white',
                   cursor: 'pointer'
-                }}>
+                }} onClick={() => window.open('https://www.linkedin.com/in/kiran-parthiban/', '_blank')}>
                   <span>in</span>
                 </button>
-                <button style={{
+                {/* <button style={{
                   width: '36px',
                   height: '36px',
                   borderRadius: '50%',
@@ -465,7 +465,7 @@ const About = () => {
                   cursor: 'pointer'
                 }}>
                   <span>𝕏</span>
-                </button>
+                </button> */}
               </div>
             </div>
           </motion.div>
