@@ -92,12 +92,12 @@ function Footer() {
             <h4>Contact</h4>
             <ul>
               <li>
-                <a href="mailto:contact@neurostack.com">contact@neurostack.com</a>
+                <a href="mailto:info@neurostack.in">info@neurostack.in</a>
               </li>
               <li>
-                <a href="tel:+15551234567">+1 (555) 123-4567</a>
+                <a href="tel:+916382624227">+91 6382624227</a>
               </li>
-              <li>Silicon Valley, CA</li>
+              
             </ul>
           </motion.div>
         </motion.div>
