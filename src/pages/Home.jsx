@@ -557,7 +557,7 @@ const Home = () => {
           initial="initial"
           whileInView="animate"
           viewport={{ once: true, amount: 0.2 }}
-          style={{marginLeft:'80px'}}
+          style={{marginLeft: isMobile ? '0px' : '180px'}}
         >
           {achievements.map((achievement, index) => (
             <motion.div
@@ -569,7 +569,7 @@ const Home = () => {
                 x: 10,
                 transition: { duration: 0.3 }
               }}
-              style={{ cursor: 'pointer' }}
+              style={{ cursor: 'pointer', marginleft:isMobile ? '0px' : '122px' }}
             >
               <motion.div
                 className="achievement-icon"
@@ -581,7 +581,7 @@ const Home = () => {
               />
               <motion.div
                 className="achievement-text"
-                style={{ color: achievement.color }}
+                style={{ color: achievement.color, fontSize: isMobile ? '14px' : '28px' }}
                 whileHover={{
                   x: 5,
                   transition: { duration: 0.2 }
