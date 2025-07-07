@@ -2,9 +2,9 @@ import { motion } from 'framer-motion';
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { FaServer, FaBrain, FaRunning } from 'react-icons/fa';
 import book from "../Assets/Frame3.png";
-import product1 from "../Assets/products1.jpg";
-import product2 from "../Assets/products2.jpg";
-import product3 from "../Assets/products3.jpg";
+import product1 from "../Assets/products1-min.jpg";
+import product2 from "../Assets/products2-min.jpg";
+import product3 from "../Assets/products3-min.jpg";
 
 function Products() {
   const [snackbarVisible, setSnackbarVisible] = useState(false);
