@@ -8,12 +8,66 @@ import book from "../Assets/Frame3.png"
 
 
 const About = () => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 300);
+  const [heroImageLoaded, setHeroImageLoaded] = useState(false);
+
+  // Add CSS animation for loading spinner
+  const spinnerStyle = `
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  `;
+
+  // Inject spinner animation styles
+  if (typeof document !== 'undefined' && !document.getElementById('spinner-styles')) {
+    const style = document.createElement('style');
+    style.id = 'spinner-styles';
+    style.textContent = spinnerStyle;
+    document.head.appendChild(style);
+  }
 
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
     };
+
+    // IMMEDIATELY preload hero background image when website starts
+    const preloadHeroImage = () => {
+      const heroImg = new Image();
+
+      // Set highest priority for immediate loading
+      heroImg.loading = 'eager';
+      heroImg.fetchPriority = 'high';
+      heroImg.decoding = 'sync'; // Synchronous decoding for immediate display
+
+      heroImg.onload = () => {
+        setHeroImageLoaded(true);
+        console.log('Hero background image preloaded successfully');
+      };
+
+      heroImg.onerror = () => {
+        console.warn('Failed to preload hero background image');
+        setHeroImageLoaded(false);
+      };
+
+      // Start loading the hero image immediately
+      heroImg.src = bgimg2;
+    };
+
+    // Execute hero image preloading immediately on component mount
+    preloadHeroImage();
+
+    // Also preload other critical images after a short delay
+    setTimeout(() => {
+      const secondaryImages = [bgimg3, book, profileImg1, profileImg2];
+      secondaryImages.forEach(imageUrl => {
+        const img = new Image();
+        img.loading = 'lazy';
+        img.fetchPriority = 'low';
+        img.src = imageUrl;
+      });
+    }, 100);
 
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
@@ -61,21 +115,56 @@ const About = () => {
           padding: '0',
         }}>
           
-        {/* Layer 1: Hero Section */} 
+        {/* Layer 1: Hero Section with Preloaded Background */}
         <div style={{
-          backgroundImage: `url(${bgimg2})`, // Set the background image
+          backgroundImage: heroImageLoaded ? `url(${bgimg2})` : 'none', // Only show image when preloaded
+          backgroundColor: heroImageLoaded ? 'transparent' : '#f0f0f0', // Fallback background while loading
           backgroundSize: "cover", // Ensure the image covers the entire page
           backgroundPosition: 'center', // Center the image
           backgroundRepeat: 'no-repeat', // Prevent the image from repeating
           backgroundAttachment: "fixed",
-          minHeight: '110vh', // Ensure the background covers the full viewport height
+          minHeight: isMobile ? '80vh' : '110vh', // Responsive height
           width: '100%',
           zIndex: '1',
           display: 'flex',
           alignItems: 'center',
           position: 'relative', // Added for mobile positioning
+          transition: 'background-image 0.3s ease-in-out', // Smooth transition when image loads
+          // Performance optimizations
+          willChange: 'transform',
+          transform: 'translate3d(0, 0, 0)',
+          backfaceVisibility: 'hidden',
+          perspective: 1000,
+          isolation: 'isolate',
+          contain: 'layout style paint',
         }}>
-
+          {/* Loading indicator while hero image is being preloaded */}
+          {!heroImageLoaded && (
+            <div style={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              color: '#666',
+              fontSize: '16px',
+              fontWeight: '500',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '10px',
+              zIndex: 10,
+            }}>
+              <div style={{
+                width: '20px',
+                height: '20px',
+                border: '2px solid #f3f3f3',
+                borderTop: '2px solid #FF6B00',
+                borderRadius: '50%',
+                animation: 'spin 1s linear infinite',
+              }}></div>
+              Loading...
+            </div>
+          )}
+          
           <motion.div
             className="zero-section"
             initial={{ opacity: 0 }}
@@ -90,6 +179,7 @@ const About = () => {
               gap: '36px',
               maxWidth: '600px',
               marginLeft: '130px',
+              marginTop: isMobile ? '100px' : '0px',
               padding: '60px 20px',
               background: "rgba(203, 203, 203, 0.96)",
               boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.2)',
@@ -100,6 +190,7 @@ const About = () => {
               }
             }}
           >
+            
             <h1 style={{
               color: '#FF6B00',
               alignSelf: 'stretch',

@@ -178,11 +178,13 @@ const Home = () => {
       <motion.section
         ref={heroRef}
         className="hero-section"
-        initial={{ opacity: 0, scale: 1.1 }}
-        animate={{ opacity: 1, scale: 1 }}
+        initial={{ opacity: 0, y: 50, rotateX: 10 }}
+        whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
         transition={{
-          duration: 1.2,
-          ease: [0.25, 0.46, 0.45, 0.94]
+          duration: 1,
+          ease: [0.25, 0.46, 0.45, 0.94],
+          delay: 0.2
         }}
         style={{
           backgroundImage:`url(${frame1}) `,
@@ -197,10 +199,10 @@ const Home = () => {
         >
           <motion.h1
             variants={fadeInUp}
-            whileHover={{
-              scale: 1.05,
-              transition: { duration: 0.3 }
-            }}
+            // whileHover={{
+            //   scale: 1.05,
+            //   transition: { duration: 0.3 }
+            // }}
             style={{ marginTop: isMobile ? '25px': '0px' }}
           >
             Commoditizing AI
@@ -259,7 +261,7 @@ const Home = () => {
         className="welcome-section"
         initial={{ opacity: 0, y: 50, rotateX: 10 }}
         whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
+        viewport={{ once: true, amount: 0.1 }}
         transition={{
           duration: 1,
           ease: [0.25, 0.46, 0.45, 0.94],
@@ -311,10 +313,10 @@ const Home = () => {
       {/* Services Preview */}
       <section className="services-preview" ref={servicesRef} style={{paddingBottom: isMobile? '0px':'60px'}}>
         <motion.h2
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+          // initial={{ opacity: 0, y: 30 }}
+          // whileInView={{ opacity: 1, y: 0 }}
+          // viewport={{ once: true }}
+          // transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
         >
           What We Offer
         </motion.h2>
@@ -331,7 +333,7 @@ const Home = () => {
             <motion.div
               key={index}
               className="service-card"
-              variants={scaleIn}
+              // variants={scaleIn}
               whileHover={{
                 scale: 1.05,
                 rotateY: 5,
@@ -405,8 +407,8 @@ const Home = () => {
                   alignItems: 'center'
                 }}
                 whileHover={{
-                  scale: isMobile ? 1.02 : 1.05,
-                  transition: { duration: 0.3 }
+                  // scale: isMobile ? 1.02 : 1.05,
+                   transition: { duration: 0.3 }
                 }}
               />
 
@@ -430,7 +432,7 @@ const Home = () => {
 
           <motion.div
             className="explore-all-services"
-            variants={fadeInUp}
+            // variants={fadeInUp}
             whileHover={{
               scale: 1.05,
               boxShadow: "0 10px 25px rgba(0,0,0,0.2)",
@@ -462,10 +464,10 @@ const Home = () => {
       {/* Testimonials */}
       <section className="testimonials" ref={testimonialsRef}>
         <motion.h2
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+          // initial={{ opacity: 0, y: 30 }}
+          // whileInView={{ opacity: 1, y: 0 }}
+          // viewport={{ once: true }}
+          // transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
         >
           What Our Clients Say
         </motion.h2>
@@ -481,7 +483,7 @@ const Home = () => {
             <motion.div
               key={index}
               className="testimonial-card"
-              variants={scaleIn}
+              // variants={scaleIn}
               whileHover={{
                 scale: 1.03,
                 rotateY: 2,
@@ -542,20 +544,17 @@ const Home = () => {
 
       {/* Achievements */}
       <section className="achievements" ref={achievementsRef}>
-        <motion.h2
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+        <h2
+          
         >
           Our Achievements
-        </motion.h2>
+        </h2>
 
         <motion.div
-          className="achievements-container"
-          variants={staggerContainer}
-          initial="initial"
-          whileInView="animate"
+          // className="achievements-container"
+          // variants={staggerContainer}
+          // initial="initial"
+          // whileInView="animate"
           viewport={{ once: true, amount: 0.2 }}
           style={{marginLeft: isMobile ? '0px' : '180px'}}
         >
@@ -563,29 +562,29 @@ const Home = () => {
             <motion.div
               key={index}
               className="achievement-item"
-              variants={slideInLeft}
-              whileHover={{
-                scale: 1.02,
-                x: 10,
-                transition: { duration: 0.3 }
-              }}
+              // variants={slideInLeft}
+              // whileHover={{
+              //   scale: 1.02,
+              //   x: 10,
+              //   transition: { duration: 0.3 }
+              // }}
               style={{ cursor: 'pointer', marginleft:isMobile ? '0px' : '122px' }}
             >
               <motion.div
                 className="achievement-icon"
-                whileHover={{
-                  rotate: 180,
-                  scale: 1.2,
-                  transition: { duration: 0.5 }
-                }}
+                // whileHover={{
+                //   rotate: 180,
+                //   scale: 1.2,
+                //   transition: { duration: 0.5 }
+                // }}
               />
               <motion.div
                 className="achievement-text"
                 style={{ color: achievement.color, fontSize: isMobile ? '14px' : '28px' }}
-                whileHover={{
-                  x: 5,
-                  transition: { duration: 0.2 }
-                }}
+                // whileHover={{
+                //   x: 5,
+                //   transition: { duration: 0.2 }
+                // }}
               >
                 {achievement.text}
               </motion.div>

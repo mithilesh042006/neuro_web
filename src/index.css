@@ -3,7 +3,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
 
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -12,8 +16,9 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  overflow-x: hidden;
-  overflow-y: auto;
+  /* overflow-x: hidden; */
+  /* overflow-y: auto; */
+  scroll-behavior: smooth;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -1123,6 +1128,26 @@ body {
   .btn:active, .cta-button:active {
     transform: scale(0.98);
   }
+}
+
+/* Scroll to top behavior for route changes */
+.page-transition {
+  scroll-behavior: auto; /* Disable smooth scrolling for instant page transitions */
+}
+
+/* Ensure all scrollable containers reset properly */
+.app, .main, body, html {
+  scroll-behavior: smooth;
+}
+
+/* Override scroll behavior for instant navigation */
+.instant-scroll {
+  scroll-behavior: auto !important;
+}
+
+/* Prevent scroll restoration by browser */
+html {
+  scroll-restoration: manual;
 }
 
 /* Footer */

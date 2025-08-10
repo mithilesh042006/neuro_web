@@ -108,28 +108,28 @@ function Services() {
         'Admin Dashboards'
       ]
     },
-    {
-      id: 'ui-ux',
-      icon: <FaPalette />,
-      title: 'UI/UX Design',
-      description: 'User-first design that feels natural and looks stunning.',
-      features: [
-        'Wireframes & Prototypes',
-        'Responsive Web & App Design',
-        'Design Systems & Components'
-      ]
-    },
-    {
-      id: 'graphic-design',
-      icon: <FaPencilAlt />,
-      title: 'Graphic Designing',
-      description: 'Visual identity and assets for web, social, and print.',
-      features: [
-        'Logo & Brand Identity',
-        'Social Media Creatives',
-        'Business Collaterals'
-      ]
-    }
+    // {
+    //   id: 'ui-ux',
+    //   icon: <FaPalette />,
+    //   title: 'UI/UX Design',
+    //   description: 'User-first design that feels natural and looks stunning.',
+    //   features: [
+    //     'Wireframes & Prototypes',
+    //     'Responsive Web & App Design',
+    //     'Design Systems & Components'
+    //   ]
+    // },
+    // {
+    //   id: 'graphic-design',
+    //   icon: <FaPencilAlt />,
+    //   title: 'Graphic Designing',
+    //   description: 'Visual identity and assets for web, social, and print.',
+    //   features: [
+    //     'Logo & Brand Identity',
+    //     'Social Media Creatives',
+    //     'Business Collaterals'
+    //   ]
+    // }
   ];
 
   const containerVariants = {
