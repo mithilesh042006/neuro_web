@@ -27,6 +27,26 @@ const Home = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
   const achievementsRef = useRef(null);
+  // Track which achievements are visible for animation
+  const [visibleAchievements, setVisibleAchievements] = useState([]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!achievementsRef.current) return;
+      const achievementElements = achievementsRef.current.querySelectorAll('.achievement-item');
+      const newVisible = [];
+      achievementElements.forEach((el, idx) => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) {
+          newVisible.push(idx);
+        }
+      });
+      setVisibleAchievements(newVisible);
+    };
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Enhanced animation variants
   const fadeInUp = {
@@ -543,54 +563,53 @@ const Home = () => {
       </section>
 
       {/* Achievements */}
-      <section className="achievements" ref={achievementsRef}>
-        <h2
-          
-        >
-          Our Achievements
-        </h2>
-
-        <motion.div
-          // className="achievements-container"
-          // variants={staggerContainer}
-          // initial="initial"
-          // whileInView="animate"
-          viewport={{ once: true, amount: 0.2 }}
-          style={{marginLeft: isMobile ? '0px' : '180px'}}
-        >
-          {achievements.map((achievement, index) => (
-            <motion.div
-              key={index}
-              className="achievement-item"
-              // variants={slideInLeft}
-              // whileHover={{
-              //   scale: 1.02,
-              //   x: 10,
-              //   transition: { duration: 0.3 }
-              // }}
-              style={{ cursor: 'pointer', marginleft:isMobile ? '0px' : '122px' }}
-            >
+      <section style={{margintop: "30px",
+      
+  position: "relative",
+          background:' white',
+          overflow: "hidden",
+          width: "100%",
+          padding: "64px 0",}}>
+        <h2 style={{marginLeft:"600px"}}>Our Achievements</h2>
+        <div style={{
+  margin:" 0 auto",
+  padding: "0 20px",
+}}>
+          <div ref={achievementsRef}>
+            {achievements.map((achievement, index) => (
               <motion.div
-                className="achievement-icon"
-                // whileHover={{
-                //   rotate: 180,
-                //   scale: 1.2,
-                //   transition: { duration: 0.5 }
-                // }}
-              />
-              <motion.div
-                className="achievement-text"
-                style={{ color: achievement.color, fontSize: isMobile ? '14px' : '28px' }}
-                // whileHover={{
-                //   x: 5,
-                //   transition: { duration: 0.2 }
-                // }}
+                key={index}
+                className="achievement-item"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "20px",
+                  marginBottom: "32px",
+                  marginLeft: "122px",
+                }}
+                initial={{ opacity: 0.3 }}
+                animate={{
+                  opacity: visibleAchievements.includes(index) ? 1 : 0.3,
+                  fontWeight: visibleAchievements.includes(index) ? "bold" : "normal",
+                }}
+                transition={{ duration: 0.5 }}
               >
-                {achievement.text}
+                <div style={{
+                  width: "28px",
+                  height: "28px",
+                  background: achievement.color || "#D9D9D9",
+                  flexShrink: "0",
+                }} />
+                <div style={{
+                  fontSize: "24px",
+                  fontFamily: 'sans-serif',
+                  fontWeight: "700",
+                  lineHeight: "36px",
+                }}>{achievement.text}</div>
               </motion.div>
-            </motion.div>
-          ))}
-        </motion.div>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* CTA Section */}

@@ -57,32 +57,32 @@ function Services() {
     {
       id: 'computer-vision',
       icon: <FaEye />,
-      title: 'Computer Vision',
-      description: 'AI that sees and understands the world through images and videos.',
+      title: 'AI for Vision and Language',
+      description: 'AI systems that can perceive the world through images and videos',
       features: [
-        'Object Detection',
-        'Object Segmentation',
-        'Object Classification',
-        'Image Captioning',
-        'OCR',
-        'Pose Estimation',
-        'Medical Imaging AI'
+        'Object Detection, Segmentation, and Classification',
+        'Image Captioning and Optical Character Recognition (OCR)',
+        'Pose Estimation and Medical Imaging Analysis',
+        'Speech-to-Text Conversion',
+        // 'Conversational Agents (Chatbots & Virtual Assistants)',
+        // 'Sentiment and Intent Analysis',
+        // 'Text Summarization and Translation'
       ]
     },
-    {
-      id: 'nlp',
-      icon: <FaLanguage />,
-      title: 'Natural Language Processing',
-      description: 'Teach AI to understand, analyze, and generate human language.',
-      features: [
-        'Speech-to-Text',
-        'Chatbots & Virtual Agents',
-        'Sentiment & Intent Analysis',
-        'Summarization',
-        'Translation',
-        'Named Entity Recognition'
-      ]
-    },
+    // {
+    //   id: 'nlp',
+    //   icon: <FaLanguage />,
+    //   title: 'Natural Language Processing',
+    //   description: 'Teach AI to understand, analyze, and generate human language.',
+    //   features: [
+    //     'Speech-to-Text',
+    //     'Chatbots & Virtual Agents',
+    //     'Sentiment & Intent Analysis',
+    //     'Summarization',
+    //     'Translation',
+    //     'Named Entity Recognition'
+    //   ]
+    // },
     {
       id: 'ai-rd',
       icon: <FaFlask />,
